@@ -13,14 +13,17 @@ class EventEmitter {
   }
 
   emit(event, ...args) {
-    if (this.events[event]) {
-      this.events[event].forEach((el) => el(...args));
-    }
+    process.nextTick(() => {
+      if (this.events[event]) {
+        this.events[event].forEach((el) => el(...args));
+      }
 
-    if (this.onceEvents[event]) {
-      this.onceEvents[event].forEach((el) => el());
-      delete this.onceEvents[event];
-    }
+
+      if (this.onceEvents[event]) {
+        this.onceEvents[event].forEach((el) => el());
+        delete this.onceEvents[event];
+      }
+    });
   }
 
   once(event, func) {
