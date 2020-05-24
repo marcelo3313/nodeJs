@@ -1,0 +1,17 @@
+//Test get users method
+# GET http://localhost:4000/users
+
+//Test getUser method
+# GET http://localhost:4000/users/3
+
+// Test post method
+# POST http://localhost:4000/users/add
+# Content-Type: application/json
+
+# {
+#   "name": "Jack",
+#   "email": "google@gmail.com"
+# }
+
+// Test delete method
+# DELETE http://localhost:4000/users/2
